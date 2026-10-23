@@ -1,0 +1,16 @@
+defaults:
+  - base_dataset
+env_id: "cube-triple-play-v0"
+dataset: "cube-triple-play-v0"
+save_dir: ~/.ogbench/data
+gamma: 1.0
+episode_len: 500
+observation_shape: [9]
+action_dim: 5
+goal_dim: 3
+observation_mean: [0.004133785,-0.015123543,0.4302194,-0.007141263,0.030675223,0.43440363,-0.007655601,-0.019537324,0.4255466]
+observation_std:  [0.72373146,1.7243644,0.5713555,0.72683465,1.7162266,0.5763241,0.7274095,1.7271824,0.56754684]
+action_mean: []
+action_std: []
+reward_mean: 0.081254
+reward_std: 0.27322477

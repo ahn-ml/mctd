@@ -1,0 +1,16 @@
+defaults:
+  - base_dataset
+env_id: "cube-quadruple-play-v0"
+dataset: "cube-quadruple-play-v0"
+save_dir: ~/.ogbench/data
+gamma: 1.0
+episode_len: 500
+observation_shape: [12]
+action_dim: 5
+goal_dim: 3
+observation_mean: [-0.008024298,0.01877126,0.42188692,-0.011429277,0.014665069,0.43265194,-0.015049112,0.029813973,0.42350835,-0.014851752,0.003299268,0.42176348]
+observation_std:  [0.7382668,1.738295,0.5123293,0.73243046,1.7347406,0.5146601,0.7432316,1.7451382,0.5098165,0.756039,1.745093,0.51033086]
+action_mean: []
+action_std: []
+reward_mean: 0.081254
+reward_std: 0.27322477

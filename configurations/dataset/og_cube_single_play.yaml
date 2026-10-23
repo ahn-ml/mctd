@@ -1,0 +1,16 @@
+defaults:
+  - base_dataset
+env_id: "cube-single-play-v0"
+dataset: "cube-single-play-v0"
+save_dir: ~/.ogbench/data
+gamma: 1.0
+episode_len: 200
+observation_shape: [3]
+action_dim: 5
+goal_dim: 3
+observation_mean: [-0.0015744471,0.01845605,0.7307219]
+observation_std: [0.71464956,1.6774826,0.8420709]
+action_mean: []
+action_std: []
+reward_mean: 0.081254
+reward_std: 0.27322477

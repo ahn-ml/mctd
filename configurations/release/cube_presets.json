@@ -1,0 +1,33 @@
+{
+  "_comment": "Settings that differ from configurations/algorithm/df_planning.yaml, per task size",
+  "single": {
+    "dataset.episode_len": 200,
+    "algorithm.val_max_steps": 200,
+    "algorithm.open_loop_horizon": 200,
+    "algorithm.cube_plan_max_steps": 200
+  },
+  "double": {
+    "dataset.episode_len": 500,
+    "algorithm.val_max_steps": 500,
+    "algorithm.open_loop_horizon": 500,
+    "algorithm.cube_plan_max_steps": 500,
+    "algorithm.controller_checkpoint_dir": "dql/results/cube-double-play-v0|exp|diffusion-ql|T-5|lr_decay|ms-offline|k-1|0|3|1.0|False|cql_antmaze|0.2|4.0|10|target_cube",
+    "algorithm.controller_checkpoint_epoch": 600
+  },
+  "triple": {
+    "dataset.episode_len": 500,
+    "algorithm.val_max_steps": 1000,
+    "algorithm.open_loop_horizon": 1000,
+    "algorithm.cube_plan_max_steps": 1000,
+    "algorithm.controller_checkpoint_dir": "dql/results/cube-triple-play-v0|exp|diffusion-ql|T-5|lr_decay|ms-offline|k-1|0|3|1.0|False|cql_antmaze|0.2|4.0|10|target_cube",
+    "algorithm.controller_checkpoint_epoch": 600
+  },
+  "quadruple": {
+    "dataset.episode_len": 500,
+    "algorithm.val_max_steps": 1000,
+    "algorithm.open_loop_horizon": 1000,
+    "algorithm.cube_plan_max_steps": 1000,
+    "algorithm.controller_checkpoint_dir": "dql/results/cube-quadruple-play-v0|exp|diffusion-ql|T-5|lr_decay|ms-offline|k-1|0|3|1.0|False|cql_antmaze|0.2|4.0|10|target_cube",
+    "algorithm.controller_checkpoint_epoch": 600
+  }
+}

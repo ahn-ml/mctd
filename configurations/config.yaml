@@ -1,0 +1,15 @@
+# configuration parsing starts here
+defaults:
+  - experiment: exp_planning # experiment yaml file name in configurations/experiment folder
+  - dataset: og_cube_single_play # dataset yaml file name in configurations/dataset folder
+  - algorithm: df_planning # algorithm yaml file name in configurations/algorithm folder
+
+debug: false # global debug flag will be passed into configuration of experiment, dataset and algorithm
+
+wandb: # optional W&B logging; disabled by default
+  group: null
+  entity: null
+  project: null # defaults to the repository folder name when logging is enabled
+  mode: disabled # disabled, offline or online
+
+load: null # path to a local checkpoint file
