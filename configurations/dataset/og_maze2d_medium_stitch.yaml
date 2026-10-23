@@ -1,0 +1,16 @@
+defaults:
+  - base_dataset
+env_id: "pointmaze-medium-v0"
+dataset: "pointmaze-medium-stitch-v0"
+save_dir: ~/.ogbench/data
+gamma: 1.0
+episode_len: 100
+observation_shape: [4]
+action_dim: 2
+goal_dim: 2
+observation_mean: [9.5560627e+00, 1.0342426e+01, 5.5203458e-05, -3.1391672e-05]
+observation_std: [5.79129, 5.055657, 0.02651537, 0.0255206]
+action_mean: [-0.01176269, 0.00561046]
+action_std: [0.7088544, 0.7083117]
+reward_mean: 0.081254
+reward_std: 0.27322477

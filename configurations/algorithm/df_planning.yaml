@@ -1,0 +1,108 @@
+defaults:
+  - df_base
+
+# dataset info
+data_mean: null
+data_std: null
+reward_mean: ${dataset.reward_mean}
+reward_std: ${dataset.reward_std}
+observation_mean: ${dataset.observation_mean}
+observation_std: ${dataset.observation_std}
+action_mean: ${dataset.action_mean}
+action_std: ${dataset.action_std}
+gamma: ${dataset.gamma}
+episode_len: ${dataset.episode_len}
+env_id: ${dataset.env_id}
+dataset: ${dataset.dataset}
+# non dataset info
+x_shape: null
+frame_stack: 10
+context_frames: 1
+use_reward: False
+causal: False
+plot_start_goal: True
+padding_mode: same
+# training hyperparameters
+weight_decay: 1e-4
+warmup_steps: 10000
+# diffusion-related
+guidance_scale: 2.0
+chunk_size: ${dataset.episode_len}
+scheduling_matrix: pyramid
+
+# evaluation task and execution
+interaction_seed: ${experiment.validation.seed}
+task_id: 1
+val_max_steps: 1000 # environment steps of an episode
+open_loop_horizon: 1000 # environment steps the plan is executed for
+plan_length_max: null # plan-point cap of the executed plan (null = val_max_steps)
+controller_checkpoint_dir: null # AntMaze: Diffusion-QL controller directory (null = the released Navigate controller)
+controller_checkpoint_epoch: 200
+controller_seed: null # RNG seed applied right before execution (AntMaze controller)
+replay_plan_path: null # replay-plan: saved plan.npz executed from its recorded initial state
+
+# composer (high-level search)
+high_level_search: "online-composer" # online-composer | distributed-composer | preplan-composer | replan | preplan-edges | replay-plan
+mctd_max_search_num: 1000 # Online: search budget (expanded nodes); Distributed: budget per tree
+children_guidance_sets: [[0, 0, 0.5], [0, 0.5, 1], [0.5, 1], [0.5, 1, 1.5], [1, 1.5, 2]] # one guidance set per child of a tree node (the list length is the branching factor)
+threshold_for_warp: 0.5 # a plan step longer than this rejects the plan
+early_stopping_condition: solved # "solved": the search stops when a tree plan reaches the goal (rollout solutions are the fallback); "achieved": also when a rollout does
+composer_plan_rank: 1 # k-th shortest solution / route (Online: solutions from k different branches, see plan_rank_branch_depth)
+plan_rank_branch_depth: 2 # Online with composer_plan_rank > 1: solutions count once per subtree of a node at this depth; a solved subtree is closed
+parallel_num: 300 # total parallelism: the tree expands parallel_num / mctd_node_parallel_num nodes per iteration
+parallel_search_num: 1 # nodes expanded per tree and iteration when parallel_num is null
+virtual_visit_weight: 1.0 # redundancy-aware selection weight of the parallel search
+novelty_radius: 1.0 # unreached plans score the path length farther than this from visited points
+novelty_recent_arclength: 2.0 # a plan's own points count as visited only this far (in path length) behind
+compress_still_steps: true # drop waiting points from chosen plans; the plan budget counts points
+still_step_threshold: 0.03
+simulation_overrun_ratio: 2.0 # rollouts may run this fraction past the plan budget; reaching the goal there favors the branch
+simulation_jumpy_interval: 10 # rollouts keep every C-th denoising level (jumpy denoising)
+simulation_low_level_search: "best-of-n" # rollout segment planner: "best-of-n" or "mctd"
+simulation_mctd_node_search_num: null # rollouts with mctd: overrides of the node planner values (null = same as expansion)
+simulation_mctd_node_parallel_num: null
+simulation_mctd_node_child_repeat: null
+num_samples_best_of_n: 50 # best-of-N segment planner: samples per segment
+
+# node planner (one 100-step segment)
+low_level_search: "mctd" # "mctd" (MCTD over the denoising process) or "best-of-n"
+mctd_node_search_num: 60 # inner children (partial denoising + rollout) per tree
+mctd_node_denoising_steps: 20 # denoising levels per inner depth
+mctd_node_jumpy_interval: 10 # jumpy denoising interval of the inner rollouts
+mctd_node_exp_weight: 0.1 # UCT exploration weight
+mctd_node_parallel_num: 15 # child slots each inner tree claims per iteration (Parallel MCTD)
+mctd_node_child_repeat: 3 # child slots per guidance value of an inner node
+mctd_node_max_batch: null # most items per diffusion call (larger batches are split; null = no limit)
+
+# Distributed Composer
+num_graph_nodes: 30 # waypoints (dataset cluster centers in graphs/)
+parts_mctd_max_steps: 1000 # plan-point cap of the tree plans
+cmctd_threshold_for_reaching: 1.0 # a tree plan passing within this distance of another origin connects them
+distributed_parallel_num: 5 # nodes each origin's tree expands per iteration
+
+# Preplan Composer
+graph_dir: null # plan graph directory (costs/paths pickles); null = graphs/
+graph_max_steps: 200 # start/goal connection: plan-point cap
+graph_max_search_num: 20 # start/goal connection: search budget
+preplan_neighbor_k: 3 # connect the start (goal) to its k nearest of the waypoints and the goal (start); null = to all
+preplan_connect_parallel_num: 5 # nodes each connection tree expands per iteration
+preplan_edge_max_search_num: null # graph edge: search budget per waypoint pair (null = 10 on Giant, 20 otherwise)
+preplan_edge_max_steps: null # graph edge: plan-point cap (null = 100 on Giant, 200 otherwise)
+preplan_edge_threshold_for_warp: null # graph edge: warp threshold (null = threshold_for_warp)
+preplan_edge_shard: null # preplan-edges: [k, m] runs the pairs whose index % m == k
+preplan_edge_dir: null # preplan-edges: output directory of edge_{i}_{j}.json (null = <output>/edges)
+
+# Replan baseline
+replan_open_loop: true # chain segments from the end of the plan, then execute the whole plan; false = plan again from the executed position
+replan_plan_rank: 1 # among a segment's candidates that reach the goal, take the k-th best
+
+diffusion:
+  stabilization_level: 10
+  beta_schedule: linear
+  objective: pred_x0
+  ddim_sampling_eta: 0.0
+  architecture:
+    network_size: 128
+    num_layers: 12
+    attn_heads: 4
+    dim_feedforward: 512

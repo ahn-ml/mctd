@@ -1,0 +1,97 @@
+{
+  "_comment": "Settings that differ from configurations/algorithm/df_planning.yaml: common, then <size>.common, then <size>.<composer>",
+  "common": {},
+  "medium": {
+    "common": {
+      "algorithm.threshold_for_warp": 0.5
+    },
+    "online": {
+      "algorithm.high_level_search": "online-composer",
+      "algorithm.mctd_max_search_num": 1000
+    },
+    "replan": {
+      "algorithm.high_level_search": "replan",
+      "algorithm.replan_open_loop": true
+    },
+    "distributed": {
+      "algorithm.high_level_search": "distributed-composer",
+      "algorithm.num_graph_nodes": 10,
+      "algorithm.mctd_max_search_num": 100,
+      "algorithm.parts_mctd_max_steps": 1000,
+      "algorithm.cmctd_threshold_for_reaching": 1.0
+    },
+    "preplan": {
+      "algorithm.high_level_search": "preplan-composer",
+      "algorithm.num_graph_nodes": 10,
+      "algorithm.graph_max_steps": 200,
+      "algorithm.graph_max_search_num": 20,
+      "algorithm.preplan_edge_max_search_num": 20,
+      "algorithm.preplan_edge_max_steps": 200,
+      "algorithm.preplan_neighbor_k": 3,
+      "algorithm.graph_dir": "graphs/pointmaze_online_2026-09-28"
+    }
+  },
+  "large": {
+    "common": {
+      "algorithm.threshold_for_warp": 0.5
+    },
+    "online": {
+      "algorithm.high_level_search": "online-composer",
+      "algorithm.mctd_max_search_num": 1000
+    },
+    "replan": {
+      "algorithm.high_level_search": "replan",
+      "algorithm.replan_open_loop": true
+    },
+    "distributed": {
+      "algorithm.high_level_search": "distributed-composer",
+      "algorithm.num_graph_nodes": 30,
+      "algorithm.mctd_max_search_num": 100,
+      "algorithm.parts_mctd_max_steps": 1000,
+      "algorithm.cmctd_threshold_for_reaching": 1.0
+    },
+    "preplan": {
+      "algorithm.high_level_search": "preplan-composer",
+      "algorithm.num_graph_nodes": 30,
+      "algorithm.mctd_max_search_num": 50,
+      "algorithm.graph_max_steps": 200,
+      "algorithm.graph_max_search_num": 20,
+      "algorithm.preplan_edge_max_search_num": 20,
+      "algorithm.preplan_edge_max_steps": 200,
+      "algorithm.preplan_neighbor_k": 3,
+      "algorithm.graph_dir": "graphs/pointmaze_online_2026-09-28"
+    }
+  },
+  "giant": {
+    "common": {
+      "algorithm.threshold_for_warp": 1.0
+    },
+    "online": {
+      "algorithm.high_level_search": "online-composer",
+      "algorithm.mctd_max_search_num": 2000
+    },
+    "replan": {
+      "algorithm.high_level_search": "replan",
+      "algorithm.replan_open_loop": true
+    },
+    "distributed": {
+      "algorithm.high_level_search": "distributed-composer",
+      "algorithm.num_graph_nodes": 70,
+      "algorithm.mctd_max_search_num": 50,
+      "algorithm.parts_mctd_max_steps": 1000,
+      "algorithm.cmctd_threshold_for_reaching": 1.0
+    },
+    "preplan": {
+      "algorithm.high_level_search": "preplan-composer",
+      "algorithm.num_graph_nodes": 70,
+      "algorithm.mctd_max_search_num": 50,
+      "algorithm.graph_max_steps": 200,
+      "algorithm.graph_max_search_num": 20,
+      "algorithm.preplan_edge_max_search_num": 10,
+      "algorithm.preplan_edge_max_steps": 100,
+      "algorithm.preplan_neighbor_k": 3,
+      "algorithm.preplan_edge_threshold_for_warp": 0.5,
+      "algorithm.graph_dir": "graphs/pointmaze_online_2026-09-28"
+    }
+  }
+}

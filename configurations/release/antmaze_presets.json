@@ -1,0 +1,124 @@
+{
+  "_comment": "Settings that differ from configurations/algorithm/df_planning.yaml: common, then <size>.common, then <size>.<composer>; plan rank 1 on Medium / Large and 5 on Giant for every method",
+  "common": {
+    "algorithm.controller_seed": 0
+  },
+  "medium": {
+    "common": {
+      "algorithm.threshold_for_warp": 0.5,
+      "algorithm.composer_plan_rank": 1,
+      "algorithm.replan_plan_rank": 1
+    },
+    "online": {
+      "algorithm.high_level_search": "online-composer",
+      "algorithm.mctd_max_search_num": 1000,
+      "algorithm.plan_length_max": 1000
+    },
+    "replan": {
+      "algorithm.high_level_search": "replan",
+      "algorithm.replan_open_loop": true,
+      "algorithm.plan_length_max": 1000
+    },
+    "distributed": {
+      "algorithm.high_level_search": "distributed-composer",
+      "algorithm.num_graph_nodes": 10,
+      "algorithm.mctd_max_search_num": 100,
+      "algorithm.parts_mctd_max_steps": 1000,
+      "algorithm.graph_max_steps": 200,
+      "algorithm.graph_max_search_num": 20,
+      "algorithm.cmctd_threshold_for_reaching": 1.0,
+      "algorithm.plan_length_max": 800
+    },
+    "preplan": {
+      "algorithm.high_level_search": "preplan-composer",
+      "algorithm.num_graph_nodes": 10,
+      "algorithm.mctd_max_search_num": 100,
+      "algorithm.plan_length_max": 800,
+      "algorithm.graph_max_steps": 200,
+      "algorithm.graph_max_search_num": 20,
+      "algorithm.preplan_edge_max_search_num": 20,
+      "algorithm.preplan_edge_max_steps": 200,
+      "algorithm.preplan_neighbor_k": 3,
+      "algorithm.graph_dir": "graphs/antmaze_online_2026-09-28"
+    }
+  },
+  "large": {
+    "common": {
+      "algorithm.threshold_for_warp": 0.5,
+      "algorithm.composer_plan_rank": 1,
+      "algorithm.replan_plan_rank": 1
+    },
+    "online": {
+      "algorithm.high_level_search": "online-composer",
+      "algorithm.mctd_max_search_num": 1000,
+      "algorithm.plan_length_max": 1000
+    },
+    "replan": {
+      "algorithm.high_level_search": "replan",
+      "algorithm.replan_open_loop": true,
+      "algorithm.plan_length_max": 1000
+    },
+    "distributed": {
+      "algorithm.high_level_search": "distributed-composer",
+      "algorithm.num_graph_nodes": 30,
+      "algorithm.mctd_max_search_num": 100,
+      "algorithm.parts_mctd_max_steps": 1000,
+      "algorithm.graph_max_steps": 200,
+      "algorithm.graph_max_search_num": 20,
+      "algorithm.cmctd_threshold_for_reaching": 1.0,
+      "algorithm.plan_length_max": 800
+    },
+    "preplan": {
+      "algorithm.high_level_search": "preplan-composer",
+      "algorithm.num_graph_nodes": 30,
+      "algorithm.mctd_max_search_num": 100,
+      "algorithm.plan_length_max": 800,
+      "algorithm.graph_max_steps": 200,
+      "algorithm.graph_max_search_num": 20,
+      "algorithm.preplan_edge_max_search_num": 20,
+      "algorithm.preplan_edge_max_steps": 200,
+      "algorithm.preplan_neighbor_k": 3,
+      "algorithm.graph_dir": "graphs/antmaze_online_2026-09-28"
+    }
+  },
+  "giant": {
+    "common": {
+      "algorithm.threshold_for_warp": 1.0,
+      "algorithm.composer_plan_rank": 5,
+      "algorithm.replan_plan_rank": 5
+    },
+    "online": {
+      "algorithm.high_level_search": "online-composer",
+      "algorithm.mctd_max_search_num": 2000,
+      "algorithm.plan_length_max": 1000
+    },
+    "replan": {
+      "algorithm.high_level_search": "replan",
+      "algorithm.replan_open_loop": true,
+      "algorithm.plan_length_max": 1000
+    },
+    "distributed": {
+      "algorithm.high_level_search": "distributed-composer",
+      "algorithm.num_graph_nodes": 70,
+      "algorithm.mctd_max_search_num": 100,
+      "algorithm.parts_mctd_max_steps": 1000,
+      "algorithm.graph_max_steps": 100,
+      "algorithm.graph_max_search_num": 10,
+      "algorithm.cmctd_threshold_for_reaching": 1.0,
+      "algorithm.plan_length_max": 800
+    },
+    "preplan": {
+      "algorithm.high_level_search": "preplan-composer",
+      "algorithm.num_graph_nodes": 70,
+      "algorithm.mctd_max_search_num": 100,
+      "algorithm.plan_length_max": 800,
+      "algorithm.graph_max_steps": 200,
+      "algorithm.graph_max_search_num": 20,
+      "algorithm.preplan_edge_max_search_num": 10,
+      "algorithm.preplan_edge_max_steps": 100,
+      "algorithm.preplan_neighbor_k": 3,
+      "algorithm.preplan_edge_threshold_for_warp": 0.5,
+      "algorithm.graph_dir": "graphs/antmaze_online_2026-09-28"
+    }
+  }
+}
